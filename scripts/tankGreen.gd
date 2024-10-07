@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Speed and rotation speed
 @export var moveSpeed: float = 200.0
 @export var rotationSpeed: float = 3.0
+@export var bullet_scene: PackedScene
 
 # Movement direction vector
 var velocityBetter2: Vector2 = Vector2.ZERO
@@ -29,3 +30,6 @@ func _process(delta: float) -> void:
 
 	# Move the tank using move_and_collide
 	move_and_collide(velocityBetter2 * delta)
+	
+	
+	
