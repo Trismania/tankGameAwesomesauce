@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgttehrxv0mwd"]
+
+[ext_resource type="PackedScene" uid="uid://dtngm3y1ggibw" path="res://scenes/redTank.tscn" id="1_jd6ok"]
+[ext_resource type="PackedScene" uid="uid://blgvykqbcjump" path="res://scenes/greenTank.tscn" id="2_wv2qo"]
+
+[node name="main" type="Node2D"]
+
+[node name="tankRed" parent="." instance=ExtResource("1_jd6ok")]
+position = Vector2(39, 37)
+
+[node name="tankGreen" parent="." instance=ExtResource("2_wv2qo")]
+position = Vector2(222, 49)
