@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0uhb"]
 size = Vector2(28, 20)
 
-[node name="tankGreen" type="CharacterBody2D"]
+[node name="tankGreen" type="RigidBody2D"]
 script = ExtResource("1_jlovb")
 bullet_scene = ExtResource("2_xsbww")
 

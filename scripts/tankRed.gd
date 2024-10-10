@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #Speed and rotation speed
-@export var moveSpeed: float = 200.0
+@export var moveSpeed: float = 120.0
 @export var rotationSpeed: float = 3.0
 @export var bullet_scene: PackedScene  # Drag and drop the Bullet scene here in the inspector
 
@@ -42,21 +42,22 @@ func _process(delta: float) -> void:
 	# Move the tank using move_and_collide
 	move_and_collide(velocityBetter * delta)
 
+
 func shoot() -> void:
 	# Instance the bullet scene
 	var bullet = bullet_scene.instantiate()
 	
-	# Set bullet position at the front of the tank (barrel)
-	bullet.position = global_position + Vector2.RIGHT.rotated(rotation) * 20  # Adjust the offset based on the tank size
+	# Set the bullet's position slightly in front of the tank
+	bullet.global_position = global_position + Vector2.RIGHT.rotated(rotation) * 30  # Adjust for spawn point
 	
-	# Set the bullet's rotation to match the tank's current rotation
+	# Set the bullet's rotation to match the tank's rotation
 	bullet.rotation = rotation
 	
-	# Set the bullet's velocity so it moves in the direction the tank is facing
+	# Calculate the bullet's direction based on the tank's current rotation
 	var bullet_direction = Vector2.RIGHT.rotated(rotation)
 	
-	# Call the method on the bullet to set its direction and shooter
+	# Call the method on the bullet to set its direction
 	bullet.set_direction_and_shooter(bullet_direction, self)
 	
-	# Add the bullet to the parent scene (game world)
-	get_parent().add_child(bullet)
+	# Add the bullet to the current scene
+	get_tree().current_scene.add_child(bullet)

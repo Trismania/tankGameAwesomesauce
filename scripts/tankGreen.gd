@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 #Speed and rotation speed
 @export var moveSpeed: float = 200.0

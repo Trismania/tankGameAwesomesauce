@@ -1,37 +1,33 @@
-extends Area2D
+extends RigidBody2D
 
-@export var bullet_speed: float = 400.0
-var velocity: Vector2 = Vector2.ZERO
-var bounce_count: int = 0
-@export var max_bounces: int = 3
-
-# Called when the bullet is first added to the scene
+@onready var timer: Timer = $Timer
 
 
-# Set bullet's velocity and shooter reference
-func set_direction_and_shooter(dir: Vector2, shooter_ref: Node) -> void:
-	velocity = dir.normalized() * bullet_speed
+@export var speed: float = 100.0 # bullet speed
+var direction: Vector2 = Vector2.ZERO  # Direction the bullet should move in
+var bounce_count: int = 0 # To track how many times the bullet has bounced
 
-# Move the bullet using velocity in _physics_process
+
+# This function is called by the tank to set the bullet's direction
+func set_direction_and_shooter(dir: Vector2, shooter) -> void:
+	direction = dir.normalized()  # Ensure direction is normalized
+	linear_velocity = direction * speed * 200  # Set initial velocity of the bullet
+
+# Called when the node is added to the scene
+func _ready() -> void:
+	timer.start()
+	# Disable gravity for the bullet
+	gravity_scale = 0.0
+	
+	# Disable damping to prevent the bullet from slowing down
+	linear_damp = 0.0
+	angular_damp = 0.0
+
 func _physics_process(delta: float) -> void:
-	position += velocity * delta
+	# Normalize the velocity to keep a constant speed
+	if linear_velocity.length() != speed:
+		linear_velocity = linear_velocity.normalized() * 200
 
-
-
-
-# Handle bouncing logic
-func handle_bounce1() -> void:
-	velocity.x = -velocity.x  # Bounce on x-axis
-
-	# Track bounce count and destroy bullet after max bounces
-	bounce_count += 1
-	if bounce_count >= max_bounces:
-		queue_free()  # Destroy the bullet
-
-func handle_bounce2() -> void:
-	velocity.y = -velocity.y  # Bounce on x-axis
-
-	# Track bounce count and destroy bullet after max bounces
-	bounce_count += 1
-	if bounce_count >= max_bounces:
-		queue_free()  # Destroy the bullet
+# Bullet gets deleted when timer runs out
+func _on_timer_timeout() -> void:
+	queue_free()
