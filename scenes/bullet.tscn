@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_2gvfj"]
 [ext_resource type="Texture2D" uid="uid://cg8t4y3t7sctw" path="res://assets/bullet.png" id="1_7d5cj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_af2wf"]
-size = Vector2(8, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_op1d7"]
+radius = 4.0
 
 [node name="bullet" type="RigidBody2D"]
 script = ExtResource("1_2gvfj")
@@ -13,4 +13,10 @@ script = ExtResource("1_2gvfj")
 texture = ExtResource("1_7d5cj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_af2wf")
+shape = SubResource("CircleShape2D_op1d7")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
