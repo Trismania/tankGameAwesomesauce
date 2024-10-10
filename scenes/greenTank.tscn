@@ -1,17 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://blgvykqbcjump"]
+[gd_scene load_steps=5 format=3 uid="uid://blgvykqbcjump"]
 
 [ext_resource type="Script" path="res://scripts/tankGreen.gd" id="1_jlovb"]
 [ext_resource type="Texture2D" uid="uid://cv0ihga0vs3i2" path="res://assets/tankGreen.png" id="2_fynvg"]
+[ext_resource type="PackedScene" uid="uid://cd18yiqpdpn37" path="res://scenes/bullet.tscn" id="2_xsbww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0uhb"]
-size = Vector2(20, 29)
+size = Vector2(28, 20)
 
 [node name="tankGreen" type="CharacterBody2D"]
 script = ExtResource("1_jlovb")
+bullet_scene = ExtResource("2_xsbww")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_fynvg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_u0uhb")

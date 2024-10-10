@@ -1,16 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://cd18yiqpdpn37"]
+[gd_scene load_steps=9 format=3 uid="uid://cd18yiqpdpn37"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_2gvfj"]
 [ext_resource type="Texture2D" uid="uid://cg8t4y3t7sctw" path="res://assets/bullet.png" id="1_7d5cj"]
+[ext_resource type="Script" path="res://scripts/Collisions/lefty.gd" id="3_3kg16"]
+[ext_resource type="Script" path="res://scripts/Collisions/righty.gd" id="4_unem8"]
+[ext_resource type="Script" path="res://scripts/Collisions/bottomy.gd" id="5_5a7cu"]
+[ext_resource type="Script" path="res://scripts/Collisions/toppy.gd" id="6_wfr86"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rn0ci"]
-size = Vector2(6, 6)
+size = Vector2(1.25, 6)
 
-[node name="bullet" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17m68"]
+size = Vector2(6, 1.1875)
+
+[node name="bullet" type="Area2D"]
 script = ExtResource("1_2gvfj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7d5cj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="lefty" type="Area2D" parent="."]
+script = ExtResource("3_3kg16")
+
+[node name="leftShape" type="CollisionShape2D" parent="lefty"]
+position = Vector2(-4.375, 0)
 shape = SubResource("RectangleShape2D_rn0ci")
+
+[node name="righty" type="Area2D" parent="."]
+script = ExtResource("4_unem8")
+
+[node name="rightShape" type="CollisionShape2D" parent="righty"]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_rn0ci")
+
+[node name="bottomy" type="Area2D" parent="."]
+script = ExtResource("5_5a7cu")
+
+[node name="bottomShape" type="CollisionShape2D" parent="bottomy"]
+position = Vector2(0, 4.40625)
+shape = SubResource("RectangleShape2D_17m68")
+
+[node name="Toppy" type="Area2D" parent="."]
+script = ExtResource("6_wfr86")
+
+[node name="topShape" type="CollisionShape2D" parent="Toppy"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_17m68")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="lefty" to="lefty" method="_on_body_entered"]
+[connection signal="body_entered" from="righty" to="righty" method="_on_body_entered"]
+[connection signal="body_entered" from="bottomy" to="bottomy" method="_on_body_entered"]
+[connection signal="body_entered" from="Toppy" to="." method="_on_toppy_body_entered"]
+[connection signal="body_entered" from="Toppy" to="Toppy" method="_on_body_entered"]
