@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://2dq2kpsl4v2q"]
+
+[ext_resource type="Texture2D" uid="uid://c3eqblda5nf4q" path="res://assets/tankRedWin.png" id="1_u31ib"]
+
+[node name="tankRedWin" type="CanvasLayer"]
+
+[node name="TankRedWin" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_u31ib")
+
+[node name="Label" type="Label" parent="TankRedWin"]
+offset_left = -195.0
+offset_top = -307.0
+offset_right = 227.0
+offset_bottom = -215.0
+theme_override_font_sizes/font_size = 88
+text = "RED WINS"
+uppercase = true

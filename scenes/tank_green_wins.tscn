@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7f6c1l1e56ft"]
+
+[ext_resource type="Texture2D" uid="uid://ddtogv6shwgyy" path="res://assets/tankGreenWin.png" id="1_t4ltf"]
+
+[node name="tankGreenWins" type="CanvasLayer"]
+
+[node name="TankGreenWin" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_t4ltf")
+
+[node name="Label" type="Label" parent="TankGreenWin"]
+offset_left = -263.333
+offset_top = -285.0
+offset_right = 274.667
+offset_bottom = -164.0
+theme_override_font_sizes/font_size = 88
+text = "green wins"
+uppercase = true
